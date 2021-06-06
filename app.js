@@ -1,17 +1,21 @@
 /** BizTime express application. */
-
+// Server port
+const PORT = 5000;
 
 const express = require("express");
 
-const app = express();
 const ExpressError = require("./expressError")
 
+const app = express();
 app.use(express.json());
+
+const companyRoutes = require("./routes/companies");
+app.use("/companies", companyRoutes);
 
 
 /** 404 handler */
 
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   const err = new ExpressError("Not Found", 404);
   return next(err);
 });
@@ -28,4 +32,7 @@ app.use((err, req, res, next) => {
 });
 
 
-module.exports = app;
+module.exports = {
+  PORT: PORT,
+  app: app
+};

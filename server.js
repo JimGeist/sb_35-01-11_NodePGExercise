@@ -1,9 +1,10 @@
 /** Server startup for BizTime. */
 
 
-const app = require("./app");
+const { PORT, app } = require("./app");
 
 
-app.listen(3000, function () {
-  console.log("Listening on 3000");
+app.listen(PORT, function () {
+  // console.log("Listening on 3000");
+  console.log(`${(new Date()).toISOString()}: Server listening on port ${PORT}.`);
 });
